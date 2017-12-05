@@ -1,0 +1,34 @@
+{
+  "name": "quiz1",
+  "version": "0.0.1",
+  "description": "quiz 1 twitter clone called cluck",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon",
+    "db:create": "createdb --echo clucks_dev",
+    "db:drop": "dropdb --echo --if-exists clucks_dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chilidoggca/codecore-quiz1.git"
+  },
+  "author": "Jack Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chilidoggca/codecore-quiz1/issues"
+  },
+  "homepage": "https://github.com/chilidoggca/codecore-quiz1#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "knex": "^0.14.2",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.0",
+    "pg": "^7.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.4"
+  }
+}
