@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.text('content');
     table.string('image_url');
     table.timestamps(false, true);
+    table.dateTime('time_dateTime');
   });
 };
 exports.down = function(knex, Promise) {
