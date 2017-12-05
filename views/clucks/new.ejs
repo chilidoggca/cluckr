@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+  <div class="form_div">
+    <form
+    action="/clucks"
+    method='POST'
+    enctype='multipart/form-data'
+    >
+    <div class="form-group">
+      <label>Username</labeL>
+      <input class="form-control"
+        type="text"
+        name="username"
+        value=""
+        placeholder="Amarety McRoosterson">
+    </div>
+    <div class="form-group">
+      <label>Content</labeL>
+      <textarea
+        class="form-control"
+        rows="3"
+        name="content"
+        placeholder="Whatchoo cluckin' 'bout?"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label>Image upload</labeL>
+      <input
+        class="form-control"
+        type="file"
+        name="picture"
+        value="">
+    </div>
+    <div class="row">
+      <div class="col-6">
+      <div style="width:calc(100%-20px);height:50px;"></div>
+    </div>
+    <div class="col-6">
+      <input
+        class="btn btn-outline-secondary btn-lg btn-block"
+        type="submit"
+        value="Cluck!"
+      />
+    </div>
+    </div>
+    </form>
+  </div>
+<%- include('../partials/footer') %>

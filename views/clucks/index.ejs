@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+<% for (let cluck of clucks) { %>
+  <% if (cluck.content) { %>
+    <div class="index_div">
+      <div class="row">
+        <div class="col-3">
+          <img src="/images/avatar.jpg" class="avatar">
+        </div>
+        <div class="col-9">
+          <%=cluck.username%> &bull; <%=cluck.created_at%>
+          <p><%=cluck.content%></p>
+          <% if (cluck.image_url) { %>
+            <img src="<%=cluck.image_url%>" class="img_display" />
+          <% } %>
+        </div>
+      </div>
+    </div>
+  <% } %>
+<% } %>
+<%- include('../partials/footer') %>
