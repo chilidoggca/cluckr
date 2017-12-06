@@ -64,12 +64,27 @@ router.get('/', (req, res) => {
     }
   }
 
+  function trendingTopics(arg) {
+    let arr = [];
+    let y = arg.map(x => {
+      let a = x.content;
+      let b = a.split(' ');
+      let c = b.filter(x=>(x[0]==='#'));
+      c.map(d => arr.push(d));
+    });
+    let obj = {};
+    for (let i = 0, j = arr.length; i < j; i++) {
+      obj[arr[i]] = (obj[arr[i]] || 0) + 1;
+    }
+    return obj;
+  }
+
   knex
     .select()
     .from('clucks')
     .orderBy('created_at', 'DESC')
     .then(clucks => {
-      res.render('clucks/index', {clucks, timeSince});
+      res.render('clucks/index', {clucks, timeSince, trendingTopics});
     });
 });
 

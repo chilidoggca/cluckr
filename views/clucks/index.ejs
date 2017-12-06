@@ -1,27 +1,41 @@
 <%- include('../partials/header') %>
-<% for (let cluck of clucks) { %>
-  <% if (cluck.content || cluck.image_url) { %>
-    <div class="index_div">
-      <div class="row">
-        <div class="col-3">
-          <img src="/images/avatar.jpg" class="avatar">
-        </div>
-        <div class="col-9">
-          <%=cluck.username%> &bull;
-          <% if (timeSince(cluck.time_dateTime) === 'Just now') { %>
-            <%=timeSince(cluck.time_dateTime)%>
-          <% } else { %>
-            <%=timeSince(cluck.time_dateTime)%> ago
+<div class="row">
+  <div class="col-md-3 pr-0">
+    <div class="trending">
+      <h4>Trending Clucks</h4>
+        <% for (let key in trendingTopics(clucks)) { %>
+          <% if (trendingTopics(clucks).hasOwnProperty(key)) { %>
+            <%=key%> <%=trendingTopics(clucks)[key]%> <br />
+          <%}%>
+        <%}%>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <% for (let cluck of clucks) { %>
+    <% if (cluck.content || cluck.image_url) { %>
+      <div class="index_div">
+        <div class="row">
+          <div class="col-3">
+            <img src="/images/avatar.jpg" class="avatar">
+          </div>
+          <div class="col-9">
+            <%=cluck.username%> &bull;
+            <% if (timeSince(cluck.time_dateTime) === 'Just now') { %>
+              <%=timeSince(cluck.time_dateTime)%>
+            <% } else { %>
+              <%=timeSince(cluck.time_dateTime)%> ago
+              <% } %>
+            <% if (cluck.content) { %>
+              <p><%=cluck.content%></p>
             <% } %>
-          <% if (cluck.content) { %>
-            <p><%=cluck.content%></p>
-          <% } %>
-          <% if (cluck.image_url) { %>
-            <img src="<%=cluck.image_url%>" class="img_display" />
-          <% } %>
+            <% if (cluck.image_url) { %>
+              <img src="<%=cluck.image_url%>" class="img_display" />
+            <% } %>
+          </div>
         </div>
       </div>
-    </div>
-  <% } %>
-<% } %>
+    <% } %>
+    <% } %>
+  </div>
+</div>
 <%- include('../partials/footer') %>
