@@ -69,8 +69,16 @@ router.get('/', (req, res) => {
     .from('clucks')
     .orderBy('created_at', 'DESC')
     .then(clucks => {
-      res.render('clucks/index', {clucks, timeSince});
-    });
+      knex
+        .select()
+        .from('trending')
+        .orderBy('count', 'DESC')
+        .then(topics => {
+          res.render('clucks/index', {topics, clucks, timeSince});
+        })
+        .catch(err=> res.send(err));
+    })
+    .catch(err=> res.send(err));
 });
 
 module.exports = router;
