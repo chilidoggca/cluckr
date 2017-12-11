@@ -71,7 +71,7 @@ router.get('/', (req, res) => {
     .then(clucks => {
       knex
         .select()
-        .from('trending')
+        .from('trending_topics')
         .orderBy('count', 'DESC')
         .then(topics => {
           res.render('clucks/index', {topics, clucks, timeSince});
