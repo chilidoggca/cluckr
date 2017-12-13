@@ -1,0 +1,28 @@
+body {
+  color: #8c8b8b;
+}
+img.clucks_logo {
+  height: 50px;
+}
+hr.undernav {
+  border-top: 1px solid #8c8b8b;
+}
+div.form_div {
+  border: 1px solid #8c8b8b;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+img.avatar {
+  width:100%;
+  border-radius: 7px;
+}
+div.index_div {
+  border: 1px solid #8c8b8b;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 0px;
+}
+img.img_display {
+  width:100%;
+}
