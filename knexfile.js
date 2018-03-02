@@ -9,7 +9,7 @@ module.exports = {
   development: {
     ...sharedConfig,
     connection: {
-      database: 'clucks_dev'
+      database: 'clucks2_dev'
     }
   },
   staging: {

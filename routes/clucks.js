@@ -15,23 +15,49 @@ router.post('/', upload.single('picture'), (req, res) => {
   const username = req.body.username || 'anonymous';
   const content = req.body.content || '';
   const time_dateTime = new Date();
+  const topics_arr = content.split(' ').filter(x=>x[0]==='#');
 
+  let image_url = ''
   if (req.file) {
     const filename = req.file.filename;
-    const image_url = `/${path.join(UPLOADS_DIR, filename)}`;
-    knex
-      .insert({username, content, image_url, time_dateTime})
-      .into('clucks')
-      .then(result => res.redirect(`/clucks`))
-      .catch(err => res.send(err));
-  } else {
-    image_url = '';
-    knex
-      .insert({username, content, image_url, time_dateTime})
-      .into('clucks')
-      .then(result => res.redirect(`/clucks`))
-      .catch(err => res.send(err));
+    image_url = `/${path.join(UPLOADS_DIR, filename)}`
   }
+
+  knex
+    .insert({username, content, image_url, time_dateTime})
+    .into('clucks')
+    .then(result => {
+
+      //1.  find all topics in topics_arr
+        // then
+        // 2. for each topic in topics_arr, check if it was returned from find
+        //    if yes - increment count
+        //    if no - insert new topic
+
+      return knex('trending_topics') // select topics where in topics exists in topics_arr
+        // .from('trending_topics')
+        .increment('count', 1)
+        .whereIn('topic', topics_arr)
+        .returning('topic')
+        .then(result => {
+          // console.log(result);
+          let newTopics = topics_arr
+                            .filter(x=>(result.indexOf(x)===-1))
+                            .map((x)=> ({topic: x}));
+                            // .map((x)=> ({topic: x, count: 1}));
+          return knex ('trending_topics')
+            .insert(newTopics)
+            .into('trending_topics')
+            // .whereNotIn('topics', result)
+            .then(result => {
+              // console.log(result);
+              res.redirect(`/clucks`);
+            })
+            // .catch(err => res.send(err));
+        })
+        // .catch(err => res.send(err));
+    })
+    .catch(err => res.send(err));
 });
 
 router.get('/', (req, res) => {
@@ -73,6 +99,7 @@ router.get('/', (req, res) => {
         .select()
         .from('trending_topics')
         .orderBy('count', 'DESC')
+        .limit(10)
         .then(topics => {
           res.render('clucks/index', {topics, clucks, timeSince});
         })

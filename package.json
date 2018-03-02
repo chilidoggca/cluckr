@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon",
-    "db:create": "createdb --echo clucks_dev",
+    "db:create": "createdb --echo clucks2_dev",
     "db:drop": "dropdb --echo --if-exists clucks_dev"
   },
   "repository": {
