@@ -1,5 +1,6 @@
+const DB_URL = 'postgres://cbqvikukqioviv:b3f41cc461816d7b4d4e13cfbe7cd5f8c130dd61f1fadf4611289c873700d993@ec2-50-17-206-214.compute-1.amazonaws.com:5432/dd78qv9spj5j90';
 const sharedConfig = {
-  client: 'postgresql',
+  client: 'pg',
   migrations: {
     tableName: 'knex_migrations',
     directory: './db/migrations'
@@ -21,7 +22,8 @@ module.exports = {
   production: {
     ...sharedConfig,
     connection: {
-      database: process.env.DATABASE_URL
+      database: DB_URL,
+      ssl: true
     }
   }
 };
