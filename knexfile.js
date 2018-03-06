@@ -21,7 +21,7 @@ module.exports = {
   production: {
     ...sharedConfig,
     connection: {
-      database: 'clucks_production'
+      database: process.env.DATABASE_URL
     }
   }
 };
