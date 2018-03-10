@@ -17,8 +17,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-const DOMAIN = 'localhost';
-const PORT = '3222';
-app.listen(PORT, DOMAIN, () => {
-  console.log(`🖥 Server listening on http://${DOMAIN}:${PORT}`);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`🖥 Server listening on http://localhost:${PORT}`);
 });

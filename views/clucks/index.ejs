@@ -3,11 +3,9 @@
   <div class="col-md-3 pr-0">
     <div class="trending">
       <h4>Trending Clucks</h4>
-        <% for (let key in trendingTopics(clucks)) { %>
-          <% if (trendingTopics(clucks).hasOwnProperty(key)) { %>
-            <%=key%> <%=trendingTopics(clucks)[key]%> <br />
-          <%}%>
-        <%}%>
+        <% for (let topic of topics) { %>
+          <%= topic.topic %> - <%= topic.count %><br />
+        <% } %>
     </div>
   </div>
   <div class="col-md-9">

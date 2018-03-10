@@ -27,11 +27,11 @@ img.img_display {
   width:100%;
 }
 div.trending {
-  display: none;
   border: 1px solid #8c8b8b;
   border-radius: 5px;
   padding: 10px;
   margin: 20px 0px;
+  display: none;
 }
 @media only screen and (min-width: 768px) {
   div.trending {
