@@ -90,6 +90,21 @@ router.get('/', (req, res) => {
     }
   }
 
+  function trendingTopics(arg) {
+    let arr = [];
+    let y = arg.map(x => {
+      let a = x.content;
+      let b = a.split(' ');
+      let c = b.filter(x=>(x[0]==='#'));
+      c.map(d => arr.push(d));
+    });
+    let obj = {};
+    for (let i = 0, j = arr.length; i < j; i++) {
+      obj[arr[i]] = (obj[arr[i]] || 0) + 1;
+    }
+    return obj;
+  }
+
   knex
     .select()
     .from('clucks')
@@ -106,6 +121,7 @@ router.get('/', (req, res) => {
         .catch(err=> res.send(err));
     })
     .catch(err=> res.send(err));
+
 });
 
 module.exports = router;
